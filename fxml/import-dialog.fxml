@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.book.keeping.controller.ImportDialogController"
+            prefWidth="600"
+            prefHeight="400">
+    
+    <header>
+        <Label text="Import Transactions from CSV"/>
+    </header>
+    
+    <content>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="CSV File:"/>
+                <TextField fx:id="filePathField" prefWidth="300" editable="false"/>
+                <Button fx:id="browseButton" text="Browse..." onAction="#handleBrowseAction"/>
+            </HBox>
+            
+            <Separator/>
+            
+            <Label text="Preview:"/>
+            <TableView fx:id="previewTable" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="150"/>
+                    <TableColumn fx:id="amountColumn" text="Amount" prefWidth="100"/>
+                    <TableColumn fx:id="categoryColumn" text="Category" prefWidth="100"/>
+                    <TableColumn fx:id="sourceColumn" text="Source" prefWidth="100"/>
+                </columns>
+            </TableView>
+            
+            <Separator/>
+            
+            <VBox spacing="5">
+                <Label text="Import Options:"/>
+                <CheckBox fx:id="skipHeaderCheckBox" text="Skip header row" selected="true"/>
+                <CheckBox fx:id="mergeDataCheckBox" text="Merge with existing data" selected="true"/>
+            </VBox>
+            
+            <Separator/>
+            
+            <VBox spacing="5">
+                <Label text="CSV Format:"/>
+                <TextArea fx:id="formatInfoArea" editable="false" wrapText="true" prefHeight="60">
+                    <text>
+                        CSV file should contain the following columns:
+                        Date (yyyy-MM-dd), Description, Amount, Category, Source, AI Generated (optional)
+                        Example: 2024-01-01,Grocery Shopping,-50.00,Food,Credit Card,false
+                    </text>
+                </TextArea>
+            </VBox>
+        </VBox>
+    </content>
+    
+    <buttonTypes>
+        <ButtonType fx:id="importButton" text="Import" buttonData="OK_DONE"/>
+        <ButtonType fx:id="cancelButton" text="Cancel" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane> 

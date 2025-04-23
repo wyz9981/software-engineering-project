@@ -1,0 +1,367 @@
+/* 
+ * modern-finance-style.css
+ * 现代风格个人理财管理工具样式表
+ */
+
+/* ====== 全局变量定义 ====== */
+* {
+    /* 主色调 */
+    -fx-primary-color: #00B2CA;  /* 主要颜色 - 冷青色 */
+    -fx-primary-color-light: derive(-fx-primary-color, 40%);
+    -fx-primary-color-dark: derive(-fx-primary-color, -40%);
+    
+    -fx-secondary-color: #212529; /* 深灰色，用于文本 */
+    
+    /* 背景和界面变量 */
+    -fx-background: #F8F9FA;
+    -fx-surface: #FFFFFF;
+    -fx-text-primary: #212529;
+    -fx-text-secondary: #6C757D;
+    -fx-border: #DEE2E6;
+    
+    /* 功能色 */
+    -fx-income-color: #FF6B6B;   /* 收入 - 暖橘色 */
+    -fx-expense-color: #1DE9B6;  /* 支出 - 冷绿色 */
+    -fx-warning-color: #FFC145;  /* 警告 - 黄色 */
+    -fx-info-color: #4A6FA5;     /* 信息 - 蓝色 */
+    
+    /* 字体 */
+    -fx-font-family: "Segoe UI", "Microsoft YaHei UI", "SimHei", sans-serif;
+    -fx-font-size: 13px;
+    
+    /* 新拟物化元素 */
+    -fx-neumorphic-shadow-inner: "inset 2px 2px 5px rgba(0, 0, 0, 0.05), inset -2px -2px 5px rgba(255, 255, 255, 0.5)";
+    -fx-neumorphic-shadow-outer: "5px 5px 10px rgba(0, 0, 0, 0.05), -5px -5px 10px rgba(255, 255, 255, 0.6)";
+    -fx-neumorphic-radius: 12px;
+}
+
+/* ====== 根容器样式 ====== */
+.root {
+    -fx-background-color: -fx-background;
+    -fx-font-family: -fx-font-family;
+    -fx-font-size: -fx-font-size;
+    -fx-fill: -fx-text-primary;
+}
+
+/* ====== 主容器样式 ====== */
+.main-container {
+    -fx-background-color: -fx-background;
+    -fx-padding: 15px;
+    -fx-spacing: 15px;
+}
+
+/* ====== 菜单栏样式 ====== */
+.menu-bar {
+    -fx-background-color: -fx-surface;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+    -fx-padding: 5px;
+}
+
+.menu-bar .menu {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 8px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 13pt;
+}
+
+.menu-bar .menu:hover {
+    -fx-background-color: derive(-fx-primary-color, 80%);
+}
+
+.menu-item {
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 0;
+}
+
+.menu-item .label {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 12pt;
+}
+
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: derive(-fx-primary-color, 80%);
+}
+
+.menu-item:focused .label, .menu-item:hovered .label {
+    -fx-text-fill: -fx-primary-color;
+}
+
+/* ====== 表格样式 ====== */
+.table-view {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-width: 0;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: -fx-border;
+    -fx-pref-height: 45px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-text-secondary;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px 10px 10px;
+    -fx-alignment: center-left;
+    -fx-font-size: 12pt;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: derive(-fx-border, 20%);
+    -fx-pref-height: 50px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: derive(-fx-surface, -2%);
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: -fx-surface;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: derive(-fx-primary-color, 95%);
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: derive(-fx-primary-color, 85%);
+    -fx-table-cell-border-color: derive(-fx-primary-color, 70%);
+}
+
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10px 15px;
+    -fx-border-color: transparent;
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 12pt;
+    -fx-alignment: center-left;
+}
+
+.table-view .scroll-bar:horizontal,
+.table-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+/* 自定义表格单元格样式 */
+.income-cell {
+    -fx-text-fill: -fx-income-color;
+    -fx-font-weight: bold;
+}
+
+.expense-cell {
+    -fx-text-fill: -fx-expense-color;
+    -fx-font-weight: bold;
+}
+
+/* ====== 表单容器样式 ====== */
+.form-container {
+    -fx-background-color: -fx-surface;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 2);
+}
+
+.form-title {
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-primary;
+    -fx-padding: 0 0 10 0;
+}
+
+.form-group {
+    -fx-spacing: 5px;
+    -fx-alignment: center-left;
+}
+
+.form-label {
+    -fx-font-size: 12pt;
+    -fx-text-fill: -fx-text-secondary;
+    -fx-min-width: 100px;
+    -fx-padding: 0 10px 0 0;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-background-color: derive(-fx-surface, -3%);
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-border;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 12pt;
+    -fx-prompt-text-fill: derive(-fx-text-secondary, 30%);
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: -fx-primary-color;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 178, 202, 0.3), 10, 0, 0, 0);
+}
+
+.date-picker, .combo-box {
+    -fx-background-color: derive(-fx-surface, -3%);
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-border-color: -fx-border;
+}
+
+.date-picker .text-field, .combo-box .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.date-picker:focused, .combo-box:focused {
+    -fx-border-color: -fx-primary-color;
+}
+
+.date-picker .arrow-button, .combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.date-picker .arrow-button .arrow, .combo-box .arrow-button .arrow {
+    -fx-background-color: -fx-text-secondary;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 8px 15px;
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 12pt;
+}
+
+/* ====== 按钮样式 ====== */
+.button {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-font-size: 12pt;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: derive(-fx-primary-color, 20%);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.button:pressed {
+    -fx-background-color: derive(-fx-primary-color, -10%);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
+}
+
+.secondary-button {
+    -fx-background-color: -fx-text-secondary;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 1);
+}
+
+.secondary-button:hover {
+    -fx-background-color: derive(-fx-text-secondary, 20%);
+}
+
+.secondary-button:pressed {
+    -fx-background-color: derive(-fx-text-secondary, -10%);
+}
+
+.danger-button {
+    -fx-background-color: #F44336;
+}
+
+.danger-button:hover {
+    -fx-background-color: derive(#F44336, 20%);
+}
+
+.danger-button:pressed {
+    -fx-background-color: derive(#F44336, -10%);
+}
+
+/* ====== 卡片样式 ====== */
+.card {
+    -fx-background-color: -fx-surface;
+    -fx-background-radius: -fx-neumorphic-radius;
+    -fx-border-radius: -fx-neumorphic-radius;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 2);
+    -fx-padding: 15px;
+}
+
+/* ====== 状态标签样式 ====== */
+.status-label {
+    -fx-background-radius: 15px;
+    -fx-padding: 5px 15px;
+    -fx-font-weight: bold;
+    -fx-font-size: 11pt;
+}
+
+.income-label {
+    -fx-background-color: derive(-fx-income-color, 90%);
+    -fx-text-fill: -fx-income-color;
+}
+
+.expense-label {
+    -fx-background-color: derive(-fx-expense-color, 80%);
+    -fx-text-fill: derive(-fx-expense-color, -20%);
+}
+
+/* ====== 对话框样式 ====== */
+.dialog-pane {
+    -fx-background-color: -fx-surface;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: -fx-text-primary;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: derive(-fx-primary-color, 80%);
+}
+
+.dialog-pane:header .header-panel .label {
+    -fx-text-fill: -fx-text-primary;
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button {
+    -fx-background-radius: 8px;
+}
+
+/* ====== 分隔符样式 ====== */
+.separator {
+    -fx-background-color: -fx-border;
+}
+
+/* ====== 图表样式 ====== */
+.chart {
+    -fx-background-color: transparent;
+} 
