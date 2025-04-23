@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<VBox spacing="10" stylesheets="/css/modern-finance-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.book.keeping.controller.DataAnalysisController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+    
+    <!-- 标题 -->
+    <Label text="Data Analysis" styleClass="form-title" />
+    
+    <!-- 时间范围选择 -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Time Range:" styleClass="form-label" />
+        <ComboBox fx:id="timeRangeComboBox" prefWidth="150" />
+        <Button text="Update" onAction="#handleUpdateAnalysis" />
+    </HBox>
+    
+    <!-- 图表区域 -->
+    <TabPane VBox.vgrow="ALWAYS">
+        <!-- 月度统计 -->
+        <Tab text="Monthly Statistics">
+            <BarChart fx:id="monthlyChart" title="Monthly Income vs Expenses">
+                <xAxis>
+                    <CategoryAxis label="Month" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Amount" />
+                </yAxis>
+            </BarChart>
+        </Tab>
+        
+        <!-- 分类分析 -->
+        <Tab text="Category Analysis">
+            <PieChart fx:id="categoryChart" title="Expense by Category" />
+        </Tab>
+        
+        <!-- 余额趋势 -->
+        <Tab text="Balance Trend">
+            <LineChart fx:id="trendChart" title="Balance Trend">
+                <xAxis>
+                    <CategoryAxis label="Date" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Balance" />
+                </yAxis>
+            </LineChart>
+        </Tab>
+    </TabPane>
+    
+    <!-- 统计信息 -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Total Income:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="totalIncomeLabel" text="¥0.00" styleClass="income-cell" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        
+        <Label text="Total Expenses:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Label fx:id="totalExpenseLabel" text="¥0.00" styleClass="expense-cell" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        
+        <Label text="Net Balance:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Label fx:id="netBalanceLabel" text="¥0.00" styleClass="balance-cell" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+    </GridPane>
+</VBox> 

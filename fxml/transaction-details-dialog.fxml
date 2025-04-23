@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane stylesheets="/css/modern-finance-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.book.keeping.controller.TransactionDetailsController">
+    <headerText>Transaction Details</headerText>
+    
+    <content>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20" />
+            </padding>
+            
+            <!-- 主要详情卡片 -->
+            <VBox styleClass="card" spacing="15">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15" />
+                </padding>
+                
+                <!-- 交易金额 -->
+                <HBox alignment="CENTER">
+                    <Label fx:id="amountLabel" text="0.00" style="-fx-font-size: 24pt; -fx-font-weight: bold;" />
+                </HBox>
+                
+                <!-- 分隔线 -->
+                <Separator />
+                
+                <!-- 详情项目 -->
+                <GridPane hgap="15" vgap="10">
+                    <!-- 日期 -->
+                    <Label text="Date:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label fx:id="dateLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    
+                    <!-- 描述 -->
+                    <Label text="Description:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <Label fx:id="descriptionLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    
+                    <!-- 分类 -->
+                    <Label text="Category:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <HBox alignment="CENTER_LEFT" spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="categoryLabel" />
+                        <Label fx:id="categoryBadge" styleClass="status-label" />
+                    </HBox>
+                    
+                    <!-- 来源 -->
+                    <Label text="Source:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <Label fx:id="sourceLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    
+                    <!-- AI生成 -->
+                    <Label text="AI Generated:" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                    <Label fx:id="aiGeneratedLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="100" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="250" />
+                    </columnConstraints>
+                </GridPane>
+            </VBox>
+        </VBox>
+    </content>
+    
+    <buttonTypes>
+        <ButtonType text="Close" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane> 
