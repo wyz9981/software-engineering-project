@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="/css/modern-finance-style.css" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.book.keeping.controller.MainViewController">
+    <!-- 顶部菜单栏和工具栏 -->
+    <top>
+        <VBox spacing="0">
+            <!-- 菜单栏 -->
+            <MenuBar>
+                <menus>
+                    <Menu text="File">
+                        <items>
+                            <MenuItem text="New" />
+                            <MenuItem text="Open" />
+                            <MenuItem text="Save" />
+                            <SeparatorMenuItem />
+                            <MenuItem fx:id="importMenuItem" text="Import from CSV..." onAction="#handleImportAction"/>
+                            <MenuItem fx:id="exitMenuItem" text="Exit" onAction="#handleExitAction"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Edit">
+                        <items>
+                            <MenuItem text="Find Transaction" />
+                            <MenuItem text="Preferences" />
+                            <MenuItem fx:id="clearMenuItem" text="Clear Form" onAction="#handleClearAction"/>
+                        </items>
+                    </Menu>
+                    <Menu text="View">
+                        <items>
+                            <MenuItem fx:id="dataAnalysisMenuItem" text="Data Analysis" onAction="#handleDataAnalysisAction"/>
+                            <MenuItem fx:id="aiInsightMenuItem" text="AI Insight" onAction="#handleAiInsightAction"/>
+                            <MenuItem fx:id="chatMenuItem" text="AI Chat Assistant" onAction="#handleChatAction"/>
+                            <SeparatorMenuItem />
+                            <MenuItem text="Income Summary" />
+                            <MenuItem text="Expense Summary" />
+                        </items>
+                    </Menu>
+                    <Menu text="Help">
+                        <items>
+                            <MenuItem fx:id="aboutMenuItem" text="About" onAction="#handleAboutAction"/>
+                        </items>
+                    </Menu>
+                </menus>
+                <HBox.hgrow>ALWAYS</HBox.hgrow>
+            </MenuBar>
+        </VBox>
+    </top>
+    
+    <!-- 中间内容区域 -->
+    <center>
+        <BorderPane styleClass="main-container">
+            <!-- 主表格区域 -->
+            <center>
+                <VBox styleClass="card" spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    
+                    <!-- 表格顶部操作区 -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Transactions" styleClass="form-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="chatButton" text="AI Financial Assistant" styleClass="chat-button" onAction="#handleChatAction"/>
+                        <Button fx:id="aiInsightButton" text="AI Insight" styleClass="action-button" onAction="#handleAiInsightAction"/>
+                        <Label text="Total Balance:" />
+                        <Label fx:id="totalBalanceLabel" text="\$3,108.20" styleClass="income-cell" />
+                    </HBox>
+                    
+                    <!-- 交易记录表格 -->
+                    <TableView fx:id="transactionTable" VBox.vgrow="ALWAYS" minHeight="300" prefHeight="400">
+                        <columns>
+                            <TableColumn fx:id="dateColumn" text="Date" minWidth="110" maxWidth="130" prefWidth="120" />
+                            <TableColumn fx:id="descriptionColumn" text="Description" minWidth="250" prefWidth="300" />
+                            <TableColumn fx:id="amountColumn" text="Amount" minWidth="120" maxWidth="140" prefWidth="130" />
+                            <TableColumn fx:id="categoryColumn" text="Category" minWidth="140" maxWidth="160" prefWidth="150" />
+                            <TableColumn fx:id="sourceColumn" text="Source" minWidth="140" maxWidth="160" prefWidth="150" />
+                            <TableColumn fx:id="aiColumn" text="AI?" minWidth="60" maxWidth="70" prefWidth="65" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No transactions found" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </center>
+        </BorderPane>
+    </center>
+    
+    <!-- 底部表单区域 -->
+    <bottom>
+        <VBox styleClass="form-container" minHeight="250">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            
+            <!-- 表单标题和分隔线 -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Add New Transaction" styleClass="form-title" />
+            </HBox>
+            
+            <Separator>
+                <VBox.margin>
+                    <Insets top="2" bottom="10" />
+                </VBox.margin>
+            </Separator>
+            
+            <!-- 表单内容 - 使用更紧凑的两列网格 -->
+            <GridPane hgap="15" vgap="10">
+                <!-- 第一行 -->
+                <HBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Date:" styleClass="form-label" />
+                    <Region prefWidth="10" />
+                    <DatePicker fx:id="datePicker" prefWidth="180" promptText="Select date" />
+                </HBox>
+                
+                <HBox styleClass="form-group" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Amount:" styleClass="form-label" />
+                    <Region prefWidth="10" />
+                    <TextField fx:id="amountField" prefWidth="180" promptText="Enter amount (negative for expense)" />
+                </HBox>
+                
+                <!-- 第二行 -->
+                <HBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                    <Label text="Description:" styleClass="form-label" />
+                    <Region prefWidth="10" />
+                    <TextField fx:id="descriptionField" HBox.hgrow="ALWAYS" promptText="Enter transaction description" />
+                </HBox>
+                
+                <!-- 第三行 -->
+                <HBox styleClass="form-group" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Category:" styleClass="form-label" />
+                    <Region prefWidth="10" />
+                    <ComboBox fx:id="categoryComboBox" prefWidth="180" promptText="Select category" />
+                </HBox>
+                
+                <HBox styleClass="form-group" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="Source:" styleClass="form-label" />
+                    <Region prefWidth="10" />
+                    <ComboBox fx:id="sourceComboBox" prefWidth="180" promptText="Select source" />
+                </HBox>
+                
+                <!-- 第四行 - 按钮 -->
+                <HBox alignment="CENTER_RIGHT" spacing="15" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                    <Button fx:id="clearButton" text="Clear Form" styleClass="secondary-button" onAction="#handleClearAction" />
+                    <Button fx:id="addButton" text="Add Transaction" onAction="#handleAddAction" />
+                </HBox>
+                
+                <!-- 列设置 -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="50" />
+                </columnConstraints>
+            </GridPane>
+        </VBox>
+    </bottom>
+</BorderPane> 

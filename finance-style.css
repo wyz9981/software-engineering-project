@@ -1,0 +1,285 @@
+/* 
+ * finance-style.css
+ * 个人理财管理工具样式表
+ */
+
+/* ====== 全局变量定义 ====== */
+* {
+    -fx-primary-color: #3498db;
+    -fx-secondary-color: #2c3e50;
+    -fx-accent-color: #16a085;
+    
+    -fx-focus-color: -fx-primary-color;
+    
+    -fx-light-text-color: #f8f9fa;
+    -fx-mid-text-color: #6c757d;
+    -fx-dark-text-color: #343a40;
+    
+    -fx-positive-color: #28a745;
+    -fx-negative-color: #dc3545;
+    -fx-warning-color: #ffc107;
+    
+    -fx-background-light: #f8f9fa;
+    -fx-background-medium: #e9ecef;
+    -fx-background-dark: #dee2e6;
+    
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12pt;
+}
+
+/* ====== 根容器样式 ====== */
+.root {
+    -fx-background-color: -fx-background-light;
+    -fx-font-family: -fx-font-family;
+    -fx-font-size: -fx-font-size;
+}
+
+/* ====== 菜单栏样式 ====== */
+.menu-bar {
+    -fx-background-color: -fx-secondary-color;
+    -fx-padding: 0.2em;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: -fx-light-text-color;
+}
+
+.menu-bar .menu:hover {
+    -fx-background-color: derive(-fx-secondary-color, 10%);
+}
+
+.menu-item {
+    -fx-padding: 0.5em 1em 0.5em 1em;
+}
+
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: -fx-primary-color;
+}
+
+.menu-item .label {
+    -fx-text-fill: -fx-dark-text-color;
+}
+
+.menu-item:focused .label, .menu-item:hovered .label {
+    -fx-text-fill: -fx-light-text-color;
+}
+
+/* ====== 表格样式 ====== */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-background-dark;
+    -fx-border-radius: 4px;
+    -fx-padding: 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: -fx-secondary-color;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-light-text-color;
+    -fx-font-weight: bold;
+    -fx-padding: 0.5em;
+}
+
+.table-view .table-row-cell {
+    -fx-border-width: 0;
+    -fx-cell-size: 40px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: derive(-fx-background-light, -3%);
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: -fx-background-light;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: derive(-fx-primary-color, 90%);
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: derive(-fx-primary-color, 60%);
+    -fx-text-fill: -fx-light-text-color;
+}
+
+.table-view .table-cell {
+    -fx-padding: 0.5em 0.5em 0.5em 0.8em;
+    -fx-border-color: transparent;
+    -fx-alignment: center-left;
+}
+
+/* 特定的定制单元格 */
+.positive-amount {
+    -fx-text-fill: -fx-positive-color;
+    -fx-font-weight: bold;
+}
+
+.negative-amount {
+    -fx-text-fill: -fx-negative-color;
+    -fx-font-weight: bold;
+}
+
+/* ====== 表单样式 ====== */
+.form-container {
+    -fx-background-color: -fx-background-medium;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: -fx-background-dark;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, -3);
+}
+
+.form-title {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-secondary-color;
+    -fx-padding: 0 0 10 0;
+}
+
+.form-group {
+    -fx-spacing: 5px;
+}
+
+.form-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-secondary-color;
+}
+
+/* ====== 控件通用样式 ====== */
+.text-field, .date-picker, .combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-border-color: -fx-background-dark;
+    -fx-border-radius: 4px;
+    -fx-padding: 8px;
+}
+
+.text-field:focused, .date-picker:focused, .combo-box:focused {
+    -fx-border-color: -fx-primary-color;
+    -fx-effect: dropshadow(three-pass-box, derive(-fx-primary-color, 20%), 5, 0, 0, 0);
+}
+
+/* ====== 按钮样式 ====== */
+.button {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-primary-color, 20%), -fx-primary-color);
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-primary-color, 40%), derive(-fx-primary-color, 10%));
+}
+
+.button:pressed {
+    -fx-background-color: derive(-fx-primary-color, -10%);
+}
+
+/* 清除按钮特殊样式 */
+.clear-button {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-mid-text-color, 40%), -fx-mid-text-color);
+}
+
+.clear-button:hover {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-mid-text-color, 60%), derive(-fx-mid-text-color, 20%));
+}
+
+.clear-button:pressed {
+    -fx-background-color: derive(-fx-mid-text-color, -10%);
+}
+
+/* ====== Scroll Bar 样式 ====== */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-fx-primary-color, 80%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(-fx-primary-color, 40%);
+}
+
+.scroll-bar:horizontal .thumb:pressed,
+.scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: -fx-primary-color;
+}
+
+/* ====== 其他定制样式 ====== */
+.separator {
+    -fx-background-color: -fx-background-dark;
+}
+
+.bordered-box {
+    -fx-border-color: -fx-background-dark;
+    -fx-border-radius: 4px;
+    -fx-padding: 10px;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 3);
+    -fx-padding: 15px;
+}
+
+/* 响应式容器 */
+.content-container {
+    -fx-padding: 10px;
+}
+
+/* 发送按钮特殊样式 */
+.send-button {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-positive-color, 20%), -fx-positive-color);
+}
+
+.send-button:hover {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-positive-color, 40%), derive(-fx-positive-color, 10%));
+}
+
+.send-button:pressed {
+    -fx-background-color: derive(-fx-positive-color, -10%);
+}
+
+/* 停止按钮特殊样式 */
+.stop-button {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-warning-color, 0%), -fx-warning-color);
+    -fx-text-fill: -fx-dark-text-color;
+}
+
+.stop-button:hover {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-warning-color, 20%), derive(-fx-warning-color, -10%));
+}
+
+.stop-button:pressed {
+    -fx-background-color: derive(-fx-warning-color, -20%);
+}
+
+.stop-button:disabled {
+    -fx-opacity: 0.6;
+} 

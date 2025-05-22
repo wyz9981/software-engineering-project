@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20" stylesheets="/css/modern-finance-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.book.keeping.controller.AiInsightController">
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30" />
+    </padding>
+    
+    <!-- 标题区域 -->
+    <HBox alignment="CENTER">
+        <Label text="AIIntelligentFinancialInsight" styleClass="title-label">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </HBox>
+    
+    <!-- 状态和刷新按钮 -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Label fx:id="lastUpdatedLabel" text="LastUpdated: --" />
+        <Button fx:id="refreshButton" text="RefreshInsights" onAction="#handleRefreshInsight" styleClass="action-button" />
+    </HBox>
+    
+    <!-- 加载中指示器 -->
+    <StackPane VBox.vgrow="SOMETIMES">
+        <VBox fx:id="contentPane" spacing="20" visible="true">
+            <!-- 概览面板 -->
+            <TitledPane text="OverviewOfFinancialStatus" expanded="true">
+                <VBox spacing="10">
+                    <Label fx:id="overviewLabel" wrapText="true" />
+                </VBox>
+            </TitledPane>
+            
+            <!-- 预算建议面板 -->
+            <TitledPane text="BudgetProposal" expanded="true">
+                <GridPane hgap="20" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="150" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                    </columnConstraints>
+                    
+                    <Label text="Suggested Monthly Budget:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                    <Label fx:id="monthlyBudgetLabel" text="¥0.00" styleClass="budget-amount" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                    
+                    <Label text="Suggested Savings Goal:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                    <Label fx:id="savingsGoalLabel" text="¥0.00" styleClass="savings-amount" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                </GridPane>
+            </TitledPane>
+            
+            <!-- 成本削减建议面板 -->
+            <TitledPane text="CostCuttingSuggestions" expanded="true">
+                <VBox spacing="10">
+                    <ListView fx:id="suggestionsListView" prefHeight="150" />
+                </VBox>
+            </TitledPane>
+            
+            <!-- 饼图区域 -->
+            <TitledPane text="ExpenditureClassificationAnalysis" expanded="true">
+                <PieChart fx:id="expenseCategoryChart" legendVisible="true" 
+                          legendSide="RIGHT" prefHeight="300" />
+            </TitledPane>
+        </VBox>
+        
+        <!-- 加载中覆盖层 -->
+        <VBox fx:id="loadingPane" alignment="CENTER" spacing="20" visible="false">
+            <ProgressIndicator />
+            <Label text="AIInsightsAreBeingGenerated..." />
+        </VBox>
+    </StackPane>
+
+    <!-- 底部按钮 -->
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="Close" onAction="#handleCloseAction" />
+    </HBox>
+</VBox> 
